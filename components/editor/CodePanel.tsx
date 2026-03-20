@@ -1,19 +1,26 @@
 "use client"
 
 import { useState } from "react"
-import { Copy, Download, Code, Loader2 } from "lucide-react"
+import { Copy, Download, Code, Loader2, Check } from "lucide-react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { Button } from "@/components/ui/button"
 import { useSchemaStore } from "@/store/schemaStore"
 import type { Language } from "@/types/schema"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 const languages: { value: Language; label: string }[] = [
   { value: "sql", label: "SQL" },
   { value: "postgres", label: "PostgreSQL" },
   { value: "prisma", label: "Prisma" },
-  { value: "drizzle", label: "Drizzle" },
-  { value: "mongoose", label: "Mongoose" },
+  { value: "drizzle", label: "Drizzle (TS)" },
+  { value: "mongoose", label: "Mongoose (JS)" },
 ]
 
 const langToSyntax: Record<Language, string> = {
@@ -86,22 +93,24 @@ export function CodePanel({ projectName }: CodePanelProps) {
   }
 
   return (
-    <div className="flex h-full w-80 flex-col border-l border-white/5 bg-zinc-950">
-      {/* Language tabs */}
-      <div className="flex gap-1 border-b border-white/5 px-3 py-2 overflow-x-auto">
-        {languages.map((lang) => (
-          <button
-            key={lang.value}
-            onClick={() => setSelectedLanguage(lang.value)}
-            className={`shrink-0 rounded-lg px-2.5 py-1 text-xs font-mono transition-colors cursor-pointer ${
-              selectedLanguage === lang.value
-                ? "bg-white/5 text-white"
-                : "text-zinc-500 hover:text-white"
-            }`}
-          >
-            {lang.label}
-          </button>
-        ))}
+    <div className="flex h-full w-80 flex-col border-l border-border bg-card">
+      {/* Language select */}
+      <div className="p-3 border-b border-border bg-muted/50">
+        <Select
+          value={selectedLanguage}
+          onValueChange={(val) => setSelectedLanguage(val as Language)}
+        >
+          <SelectTrigger className="h-8 w-full font-mono text-xs">
+            <SelectValue placeholder="Select language" />
+          </SelectTrigger>
+          <SelectContent>
+            {languages.map((lang) => (
+              <SelectItem key={lang.value} value={lang.value} className="font-mono text-xs">
+                {lang.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Code area */}
@@ -123,8 +132,8 @@ export function CodePanel({ projectName }: CodePanelProps) {
           </SyntaxHighlighter>
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-center px-6">
-            <Code className="h-8 w-8 text-zinc-600 mb-3" />
-            <p className="text-sm text-zinc-400">
+            <Code className="h-8 w-8 text-muted-foreground mb-3 opacity-40" />
+            <p className="text-sm text-muted-foreground">
               Add some tables to the canvas, then click Generate to see your
               code.
             </p>
@@ -133,41 +142,37 @@ export function CodePanel({ projectName }: CodePanelProps) {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-2 border-t border-white/5 p-3">
-        <Button
+      <div className="flex border-t border-border">
+        <button
           onClick={handleGenerate}
           disabled={isGenerating || nodes.length === 0}
-          className="flex-1 text-xs"
-          size="sm"
+          className="flex-1 bg-foreground text-background text-sm font-medium py-2.5 rounded-none hover:bg-foreground/90 flex items-center justify-center disabled:opacity-50 transition-colors"
         >
           {isGenerating ? (
             <>
-              <Loader2 className="mr-1.5 h-3 w-3 animate-spin" />
+              <Loader2 className="mr-1.5 h-4 w-4 animate-spin" />
               Generating...
             </>
           ) : (
-            "Generate Code"
+            "Generate"
           )}
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
+        </button>
+        <button
           onClick={handleCopy}
           disabled={!generatedCode}
-          className="text-xs"
+          className="border-l border-border text-muted-foreground hover:text-foreground text-sm px-4 bg-muted/50 disabled:opacity-50 transition-colors flex items-center justify-center"
+          title="Copy to clipboard"
         >
-          <Copy className="mr-1 h-3 w-3" />
-          {copied ? "Copied!" : "Copy"}
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
+          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+        </button>
+        <button
           onClick={handleDownload}
           disabled={!generatedCode}
-          className="text-xs"
+          className="border-l border-border text-muted-foreground hover:text-foreground text-sm px-4 bg-muted/50 disabled:opacity-50 transition-colors flex items-center justify-center"
+          title="Download file"
         >
-          <Download className="mr-1 h-3 w-3" />
-        </Button>
+          <Download className="h-4 w-4" />
+        </button>
       </div>
     </div>
   )

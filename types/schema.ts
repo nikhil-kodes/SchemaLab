@@ -1,10 +1,13 @@
 export type FieldType =
   | "Int" | "String" | "Boolean" | "DateTime"
   | "Float" | "UUID" | "Text" | "JSON"
+  | "VarChar"
 
 export type Constraint =
   | "PRIMARY_KEY" | "FOREIGN_KEY" | "NOT_NULL"
   | "UNIQUE" | "AUTO_INCREMENT" | "DEFAULT"
+
+export type OnAction = "CASCADE" | "SET_NULL" | "RESTRICT" | "NO_ACTION"
 
 export type Field = {
   id: string
@@ -12,11 +15,15 @@ export type Field = {
   type: FieldType
   constraints: Constraint[]
   defaultValue?: string
+  length?: number // for VarChar
+  onDelete?: OnAction
+  onUpdate?: OnAction
 }
 
 export type TableNodeData = {
   tableName: string
   fields: Field[]
+  comment?: string // table comment
 }
 
 export type TableNode = {
@@ -38,6 +45,8 @@ export type RelationshipEdge = {
     relationshipType: RelationshipType
     sourceField: string
     targetField: string
+    onDelete?: OnAction
+    onUpdate?: OnAction
   }
 }
 

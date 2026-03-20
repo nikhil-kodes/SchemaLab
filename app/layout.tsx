@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Inter, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
+import { ThemeProvider } from "@/components/ThemeProvider"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://schemalab.io"),
+  metadataBase: new URL("https://schemalab.nikhilsingh.co.in"),
   title: {
     default: "SchemaLab — Visual Database Schema Designer",
     template: "%s | SchemaLab",
@@ -35,11 +36,12 @@ export const metadata: Metadata = {
     "schema builder",
     "database visualizer",
     "drag drop database design",
+    "ERD builder",
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://schemalab.io",
+    url: "https://schemalab.nikhilsingh.co.in",
     siteName: "SchemaLab",
     title: "SchemaLab — Visual Database Schema Designer",
     description: "Design your database visually. Generate production code instantly.",
@@ -56,9 +58,12 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" as const },
   },
+  icons: {
+    icon: "/logo-white.png",
+    shortcut: "/logo-white.png",
+    apple: "/logo-white.png",
+  },
 }
-
-import { ThemeProvider } from "@/components/ThemeProvider"
 
 export default function RootLayout({
   children,
@@ -67,7 +72,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)] font-sans antialiased transition-colors duration-300 overflow-x-hidden">
+      <body className="min-h-screen bg-background text-foreground font-sans antialiased transition-colors duration-300 overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

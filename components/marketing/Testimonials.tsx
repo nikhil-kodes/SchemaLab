@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 
@@ -69,9 +69,16 @@ const testimonials = [
 
 export function Testimonials() {
   const [index, setIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
   const prev = () => setIndex((i) => (i - 1 + testimonials.length) % testimonials.length)
   const next = () => setIndex((i) => (i + 1) % testimonials.length)
+
+  useEffect(() => {
+    if (!isAutoPlaying) return
+    const interval = setInterval(next, 5000)
+    return () => clearInterval(interval)
+  }, [isAutoPlaying])
 
   // Show 3 cards on desktop centered around `index`
   const getVisibleIndices = () => {
@@ -86,7 +93,11 @@ export function Testimonials() {
   const visibleIndices = getVisibleIndices()
 
   return (
-    <section className="py-28 px-4">
+    <section 
+      className="py-16 md:py-24 px-6 border-t border-border"
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="text-center mb-16"
@@ -95,10 +106,10 @@ export function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white sm:text-4xl">
+          <h2 className="text-4xl font-bold text-foreground mb-4">
             Loved by developers
           </h2>
-          <p className="mt-4 text-zinc-500 dark:text-zinc-400">
+          <p className="text-muted-foreground text-lg mb-16">
             Hear from engineers who use SchemaLab every day
           </p>
         </motion.div>
@@ -112,10 +123,10 @@ export function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
-              className="rounded-xl border-2 border-zinc-900 dark:border-white bg-white dark:bg-white p-6 text-zinc-900 dark:text-black"
+              className="rounded-2xl bg-foreground border-2 border-foreground text-background p-6"
             >
-              <Quote className="h-6 w-6 text-zinc-300 mb-3" />
-              <p className="text-sm leading-relaxed">{testimonials[index].text}</p>
+              <Quote className="h-6 w-6 text-background/50 mb-3" />
+              <p className="text-sm leading-relaxed text-background">{testimonials[index].text}</p>
               <div className="mt-4 flex items-center gap-3">
                 <img
                   src={testimonials[index].avatar}
@@ -124,7 +135,7 @@ export function Testimonials() {
                 />
                 <div>
                   <p className="text-sm font-semibold">{testimonials[index].name}</p>
-                  <p className="text-xs text-zinc-500">{testimonials[index].role}</p>
+                  <p className="text-xs text-background/70">{testimonials[index].role}</p>
                 </div>
               </div>
             </motion.div>
@@ -139,17 +150,17 @@ export function Testimonials() {
               <motion.div
                 key={`${idx}-${pos}`}
                 layout
-                className={`rounded-xl p-6 w-80 transition-all duration-300 ${
+                className={`rounded-2xl p-6 w-80 transition-all duration-300 ${
                   isCenter
-                    ? "border-2 border-zinc-900 dark:border-white bg-white text-black scale-105 shadow-2xl z-10"
-                    : "border-2 border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white scale-95 opacity-60"
+                    ? "bg-foreground border-2 border-foreground text-background scale-105 shadow-2xl z-10"
+                    : "bg-card border-2 border-border text-foreground scale-95 opacity-60"
                 }`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: isCenter ? 1 : 0.6, scale: isCenter ? 1.05 : 0.95 }}
                 transition={{ duration: 0.3 }}
               >
-                <Quote className={`h-6 w-6 mb-3 ${isCenter ? "text-zinc-300" : "text-zinc-300 dark:text-zinc-700"}`} />
-                <p className="text-sm leading-relaxed">{testimonials[idx].text}</p>
+                <Quote className={`h-6 w-6 mb-3 ${isCenter ? "text-background/50" : "text-muted-foreground/30"}`} />
+                <p className={`text-sm leading-relaxed ${isCenter ? "text-background" : "text-foreground"}`}>{testimonials[idx].text}</p>
                 <div className="mt-4 flex items-center gap-3">
                   <img
                     src={testimonials[idx].avatar}
@@ -158,7 +169,7 @@ export function Testimonials() {
                   />
                   <div>
                     <p className="text-sm font-semibold">{testimonials[idx].name}</p>
-                    <p className={`text-xs ${isCenter ? "text-zinc-500" : "text-zinc-400 dark:text-zinc-600"}`}>
+                    <p className={`text-xs ${isCenter ? "text-background/70" : "text-muted-foreground"}`}>
                       {testimonials[idx].role}
                     </p>
                   </div>
@@ -172,16 +183,16 @@ export function Testimonials() {
         <div className="flex items-center justify-center gap-4 mt-8">
           <button
             onClick={prev}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 dark:border-white/10 text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-black/30 dark:hover:border-white/30 transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border bg-background text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <span className="text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+          <span className="text-xs text-muted-foreground font-mono">
             {index + 1} / {testimonials.length}
           </span>
           <button
             onClick={next}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 dark:border-white/10 text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-black/30 dark:hover:border-white/30 transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border bg-background text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

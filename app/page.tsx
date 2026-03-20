@@ -22,20 +22,20 @@ export default function LandingPage() {
       <main className="flex-1 w-full flex flex-col">
         <HeroSection />
         <div className="w-full max-w-7xl mx-auto">
-          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
         <HowItWorks />
         <div className="w-full max-w-7xl mx-auto">
-          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
         <FeaturesBento />
         <FeatureRows />
         <div className="w-full max-w-7xl mx-auto">
-          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
         <Testimonials />
         <div className="w-full max-w-7xl mx-auto">
-          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="mx-auto w-4/5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
         <PricingSection />
         <FinalCTA />

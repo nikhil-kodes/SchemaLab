@@ -26,24 +26,24 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-28 px-4">
-      <div className="mx-auto max-w-5xl">
+    <section id="how-it-works" className="py-24 md:py-32 px-6 border-t border-border">
+      <div className="mx-auto max-w-6xl">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white sm:text-4xl">How It Works</h2>
-          <p className="mt-4 text-zinc-500 dark:text-zinc-400">Three steps to production-ready database code</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">How It Works</h2>
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">Three steps to production-ready database code</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-4xl mx-auto items-start">
           {steps.map((step, i) => (
             <motion.div
               key={step.step}
-              className="flex flex-col items-center text-center relative"
+              className="flex flex-col items-center text-center gap-4 relative"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -51,24 +51,24 @@ export function HowItWorks() {
             >
               {/* Connector arrow (between steps on desktop) */}
               {i < steps.length - 1 && (
-                <div className="hidden md:flex absolute right-0 top-8 translate-x-1/2 z-10">
-                  <ArrowRight className="h-5 w-5 text-zinc-300 dark:text-zinc-700" />
+                <div className="hidden md:block absolute top-8 -right-8 translate-x-1/2 text-muted-foreground z-10">
+                  <ArrowRight className="h-5 w-5" />
                 </div>
               )}
 
               {/* Icon in bordered circle */}
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-black/10 dark:border-white/10 bg-zinc-100 dark:bg-zinc-950">
-                <step.icon className="h-6 w-6 text-zinc-900 dark:text-white" />
+              <div className="w-16 h-16 rounded-full border-2 border-border bg-background flex items-center justify-center text-foreground shadow-sm">
+                <step.icon className="w-6 h-6 text-foreground" />
               </div>
 
               {/* Step number */}
-              <span className="mt-4 text-xs font-mono text-zinc-400 dark:text-zinc-500">Step {step.step}</span>
+              <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">Step {step.step}</span>
 
               {/* Title */}
-              <h3 className="mt-2 text-lg font-semibold text-zinc-900 dark:text-white">{step.title}</h3>
+              <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
 
               {/* Description */}
-              <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-[200px]">{step.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-[12rem] mx-auto">{step.description}</p>
             </motion.div>
           ))}
         </div>

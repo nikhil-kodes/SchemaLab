@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { temporal } from "zundo"
-import type { TableNode, RelationshipEdge, Language, Field } from "@/types/schema"
+import type { TableNode, RelationshipEdge, Language, Field, Constraint } from "@/types/schema"
 import type { PresenceUser } from "@/types/collaboration"
 
 type SchemaStore = {
@@ -33,7 +33,8 @@ type SchemaStore = {
   addField: (tableId: string) => void
   updateField: (tableId: string, fieldId: string, updates: Partial<Field>) => void
   deleteField: (tableId: string, fieldId: string) => void
-  toggleFieldConstraint: (tableId: string, fieldId: string, constraint: Field["constraints"][number]) => void
+  toggleFieldConstraint: (tableId: string, fieldId: string, constraint: Constraint) => void
+  updateTableComment: (id: string, comment: string) => void
 
   // Edge actions
   addEdge: (edge: RelationshipEdge) => void
@@ -222,6 +223,14 @@ export const useSchemaStore = create<SchemaStore>()(
                   },
                 }
               : n
+          ),
+          hasUnsavedChanges: true,
+        })),
+
+      updateTableComment: (id, comment) =>
+        set((state) => ({
+          nodes: state.nodes.map((n) =>
+            n.id === id ? { ...n, data: { ...n.data, comment } } : n
           ),
           hasUnsavedChanges: true,
         })),

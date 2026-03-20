@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { ArrowLeft, Pencil, Share2, Check, Copy, Link2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { useSchemaStore } from "@/store/schemaStore"
+import type { PresenceUser } from "@/types/collaboration"
 
 interface TopBarProps {
   projectId: string
@@ -58,12 +60,16 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
 
   return (
     <>
-      <div className="flex items-center justify-between h-11 border-b border-white/5 bg-zinc-950 px-4">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-white/10 h-11">
         {/* Left */}
         <div className="flex items-center gap-3">
+          <Link href="/dashboard" className="flex items-center gap-2 mr-2 transition-transform active:scale-95">
+            <img src="/logo-black.png" alt="Logo" className="h-5 w-5 object-contain dark:hidden" />
+            <img src="/logo-white.png" alt="Logo" className="h-5 w-5 object-contain hidden dark:block" />
+          </Link>
           <button
             onClick={() => router.push("/dashboard")}
-            className="flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors text-sm cursor-pointer"
+            className="text-zinc-400 hover:text-white text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Projects</span>
@@ -73,7 +79,7 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
 
           {editing ? (
             <input
-              className="bg-transparent text-sm font-medium text-white outline-none border-b border-white/20"
+              className="bg-transparent text-white text-sm font-medium border-0 outline-0 focus:bg-white/5 rounded px-2 py-1"
               value={name}
               onChange={(e) => setName(e.target.value)}
               onBlur={handleNameBlur}
@@ -96,7 +102,7 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
           {/* Collaborator avatars */}
           {collaborators.length > 0 && (
             <div className="flex -space-x-2">
-              {collaborators.slice(0, 3).map((user) => (
+              {collaborators.slice(0, 3).map((user: PresenceUser) => (
                 <div
                   key={user.userId}
                   className="h-7 w-7 rounded-full border-2 flex items-center justify-center text-[10px] font-medium text-white"
@@ -114,21 +120,19 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
             </div>
           )}
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setShareOpen(true)}
-            className="gap-1.5 text-xs"
-          >
-            <Share2 className="h-3 w-3" />
-            Share
-          </Button>
-
           {/* Save status */}
-          <div className="flex items-center gap-1.5 text-xs text-zinc-400">
-            <span className={`h-2 w-2 rounded-full ${saveStatusDot}`} />
+          <div className="flex items-center gap-1.5 text-xs text-zinc-400 mr-2">
+            <span className={`h-2 w-2 rounded-full ${saveStatusDot === "bg-green-400" ? "bg-green-500" : saveStatusDot}`} />
             <span className="hidden sm:inline">{saveStatusText}</span>
           </div>
+
+          <button
+            onClick={() => setShareOpen(true)}
+            className="border border-white/20 text-white text-sm rounded-lg px-3 py-1.5 hover:bg-white/5 flex items-center gap-2"
+          >
+            <Share2 className="h-3.5 w-3.5" />
+            Share
+          </button>
         </div>
       </div>
 

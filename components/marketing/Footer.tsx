@@ -3,9 +3,6 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Database, Github, Twitter } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
 
 const quickLinks = [
   { href: "#features", label: "Features" },
@@ -26,41 +23,45 @@ export function Footer() {
   const [email, setEmail] = useState("")
 
   return (
-    <footer className="border-t border-black/5 dark:border-white/5 bg-zinc-50 dark:bg-zinc-950">
-      <div className="mx-auto max-w-6xl px-4 py-16">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-zinc-950 text-zinc-400 border-t border-white/10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* About */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 text-zinc-900 dark:text-white font-semibold">
+          <div className="md:col-span-2">
+            <Link href="/" className="flex items-center gap-2 text-white font-semibold text-base mb-3">
               <Database className="h-5 w-5" />
               <span>SchemaLab</span>
             </Link>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            <p className="text-sm text-zinc-500 leading-relaxed mb-4 max-w-sm">
               Visual database schema designer. Design, connect, and generate
-              production-ready code.
+              production-ready code in seconds.
             </p>
-            <div className="flex gap-2">
-              <Input
+            <form className="flex gap-2 max-w-sm" onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="email"
                 placeholder="Email for updates"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-xs h-9"
+                className="bg-zinc-900 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder:text-zinc-600 flex-1 w-full focus:outline-none focus:ring-1 focus:ring-white/30 transition-shadow"
               />
-              <Button size="sm" className="shrink-0 h-9 text-xs">
+              <button 
+                type="submit"
+                className="bg-white text-black rounded-lg px-4 py-2 text-sm font-medium hover:bg-zinc-200 transition-colors whitespace-nowrap"
+              >
                 Subscribe
-              </Button>
-            </div>
+              </button>
+            </form>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-sm font-semibold text-white mb-4 uppercase tracking-widest">Quick Links</h4>
+            <ul className="space-y-1">
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                    className="text-sm text-zinc-400 hover:text-white transition-colors block py-1"
                   >
                     {link.label}
                   </Link>
@@ -71,13 +72,13 @@ export function Footer() {
 
           {/* Languages */}
           <div>
-            <h4 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Languages</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-sm font-semibold text-white mb-4 uppercase tracking-widest">Languages</h4>
+            <ul className="space-y-1">
               {languages.map((lang) => (
                 <li key={lang.label}>
                   <Link
                     href={lang.href}
-                    className="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors font-mono"
+                    className="text-sm text-zinc-400 hover:text-white transition-colors block py-1 font-mono"
                   >
                     {lang.label}
                   </Link>
@@ -85,48 +86,24 @@ export function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Connect */}
-          <div>
-            <h4 className="text-sm font-semibold text-zinc-900 dark:text-white mb-4">Connect</h4>
-            <div className="flex gap-2">
-              <Link
-                href="https://github.com"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 dark:border-white/10 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 transition-colors"
-                target="_blank"
-              >
-                <Github className="h-4 w-4" />
-              </Link>
-              <Link
-                href="https://twitter.com"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 dark:border-white/10 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 transition-colors"
-                target="_blank"
-              >
-                <Twitter className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
         </div>
 
-        <Separator className="my-8" />
-
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-          <p className="text-xs text-zinc-400 dark:text-zinc-500">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-zinc-600">
             © 2025 SchemaLab. All rights reserved.
           </p>
+          <p className="text-sm text-zinc-500 text-center">
+            Built with <span className="text-red-500">❤️</span> by Nikhil Singh
+          </p>
           <div className="flex gap-4">
-            <Link href="#" className="text-xs text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
+            <Link href="#" className="text-sm text-zinc-600 hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-xs text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
+            <Link href="#" className="text-sm text-zinc-600 hover:text-white transition-colors">
               Terms
             </Link>
           </div>
         </div>
-
-        <p className="mt-6 text-center text-sm text-zinc-400 dark:text-zinc-500">
-          Built with <span className="text-red-500">❤️</span> by Nikhil Singh
-        </p>
       </div>
     </footer>
   )

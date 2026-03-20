@@ -39,22 +39,25 @@ export function ProjectCard({
 
   return (
     <div
-      className="group rounded-xl border border-white/10 bg-zinc-950 p-5 cursor-pointer hover:border-white/20 hover:-translate-y-0.5 transition-all duration-150"
+      className="bg-card border border-border rounded-xl p-5 hover:border-border-strong transition-all cursor-pointer group"
       onClick={() => router.push(`/editor/${id}`)}
     >
       <div className="flex items-start justify-between">
-        <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-medium text-white truncate">{name}</h3>
-          <p className="mt-1 text-xs text-zinc-500">Last edited {timeAgo}</p>
+        <div className="flex-1 min-w-0 flex flex-col items-start">
+          <h3 className="text-base font-semibold text-foreground mb-1 truncate">{name}</h3>
+          <p className="text-xs text-muted-foreground mb-3">Last edited {timeAgo}</p>
+          <span className="inline-flex items-center text-xs bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20 rounded-full px-2 py-0.5 mb-1">
+            ACTIVE
+          </span>
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger
-            className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-500 hover:text-white hover:bg-white/5 transition-colors opacity-0 group-hover:opacity-100"
-            onClick={(e) => e.stopPropagation()}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground transition-opacity opacity-0 group-hover:opacity-100"
+            onClick={(e: React.MouseEvent) => e.stopPropagation()}
           >
             <MoreVertical className="h-4 w-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
+          <DropdownMenuContent align="end" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
             <DropdownMenuItem onClick={() => router.push(`/editor/${id}`)}>
               <ExternalLink className="mr-2 h-3.5 w-3.5" />
               Open
@@ -78,11 +81,6 @@ export function ProjectCard({
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-      <div className="mt-3 flex items-center gap-2">
-        <span className="rounded bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 text-[10px] text-green-400 font-medium">
-          ACTIVE
-        </span>
       </div>
     </div>
   )

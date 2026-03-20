@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <div className="flex h-screen bg-zinc-950">
+    <div className="flex h-screen bg-background page-bg transition-colors duration-300">
       <Sidebar />
       <ProjectGrid />
     </div>

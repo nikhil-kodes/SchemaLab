@@ -112,37 +112,33 @@ export function ProjectGrid() {
   )
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen">
-      {/* Top bar */}
-      <div className="flex items-center justify-between border-b border-white/5 bg-zinc-950 px-6 py-3">
-        <h1 className="text-xl font-semibold text-white">Projects</h1>
-      </div>
-
-      {/* Filter row */}
-      <div className="flex flex-wrap items-center gap-3 border-b border-white/5 px-6 py-3">
-        <div className="relative flex-1 min-w-[200px] max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-500" />
-          <Input
-            placeholder="Search for a project..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="pl-9 text-xs h-9"
-          />
-        </div>
-        <div className="ml-auto flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
+    <div className="ml-14 p-8 min-h-screen bg-background w-full">
+      {/* Top bar & Filter row */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <h1 className="text-2xl font-bold text-foreground">Projects</h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="relative w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+            <Input
+              placeholder="Search for a project..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="bg-card border-border rounded-lg px-4 pl-9 py-2 text-sm text-foreground placeholder:text-muted-foreground w-full h-auto"
+            />
+          </div>
+          <button
             onClick={() => setJoinModal(true)}
-            className="gap-1.5"
+            className="border border-border text-foreground rounded-lg px-4 py-2 text-sm hover:bg-muted whitespace-nowrap"
           >
-            <UserPlus className="h-3.5 w-3.5" />
             Join Project
-          </Button>
-          <Button size="sm" onClick={() => setNewProjectModal(true)} className="gap-1.5">
-            <Plus className="h-3.5 w-3.5" />
+          </button>
+          <button 
+            onClick={() => setNewProjectModal(true)} 
+            className="bg-foreground text-background rounded-lg px-4 py-2 text-sm font-medium hover:bg-foreground/90 flex items-center gap-2 whitespace-nowrap"
+          >
+            <Plus className="h-4 w-4" />
             New Project
-          </Button>
+          </button>
         </div>
       </div>
 
@@ -150,14 +146,14 @@ export function ProjectGrid() {
       <div className="flex-1 p-6 overflow-y-auto">
         {loading ? (
           <div className="flex items-center justify-center h-64">
-            <div className="text-sm text-zinc-500">Loading projects...</div>
+            <div className="text-sm text-muted-foreground">Loading projects...</div>
           </div>
         ) : filteredProjects.length === 0 && !search ? (
           // Empty state
           <div className="flex flex-col items-center justify-center h-64 text-center">
-            <Database className="h-12 w-12 text-zinc-600 mb-4" />
-            <h3 className="text-lg font-medium text-white">No projects yet</h3>
-            <p className="mt-2 text-sm text-zinc-400">
+            <Database className="h-12 w-12 text-muted-foreground mb-4 opacity-40" />
+            <h3 className="text-lg font-medium text-foreground">No projects yet</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
               Create your first schema to get started.
             </p>
             <div className="mt-6 flex gap-3">
