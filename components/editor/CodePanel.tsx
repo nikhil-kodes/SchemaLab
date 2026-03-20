@@ -93,7 +93,7 @@ export function CodePanel({ projectName }: CodePanelProps) {
   }
 
   return (
-    <div className="flex h-full w-80 flex-col border-l border-border bg-card">
+    <div className="flex h-full w-full flex-col bg-card">
       {/* Language select */}
       <div className="p-3 border-b border-border bg-muted/50">
         <Select

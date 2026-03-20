@@ -4,7 +4,7 @@ export function SchemaLabJsonLd() {
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
-          "@context": "https://schema.org",
+          "@context": "https://schemalab.nikhilsingh.co.in",
           "@type": "SoftwareApplication",
           name: "SchemaLab",
           applicationCategory: "DeveloperApplication",
@@ -12,8 +12,8 @@ export function SchemaLabJsonLd() {
           offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
           description:
             "Visual database schema designer. Generate SQL, Prisma, Drizzle and Mongoose schemas by drag-and-drop.",
-          url: "https://schemalab.io",
-          screenshot: "https://schemalab.io/og-image.png",
+          url: "https://schemalab.nikhilsingh.co.in",
+          screenshot: "https://schemalab.nikhilsingh.co.in/og-image.png",
           featureList: [
             "Visual drag-and-drop canvas",
             "SQL code generation",

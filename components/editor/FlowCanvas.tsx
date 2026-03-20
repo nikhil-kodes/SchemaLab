@@ -19,10 +19,7 @@ import { TableNode } from "./TableNode"
 import { RelationshipEdge } from "./RelationshipEdge"
 import { FloatingDock } from "./FloatingDock"
 import { useSchemaStore } from "@/store/schemaStore"
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip"
-import { cn } from "@/lib/utils"
 import type { RelationshipType, RelationshipEdge as RelationshipEdgeType } from "@/types/schema"
-import { ThemeToggle } from "@/components/ThemeToggle"
 
 const nodeTypes = { tableNode: TableNode }
 const edgeTypes = { relationship: RelationshipEdge }
@@ -36,6 +33,8 @@ function FlowCanvasInner() {
     setEdges,
     addEdge,
     activeTool,
+    setIsDragging,
+    isDragging,
   } = useSchemaStore()
 
   const onNodesChange = useCallback(
@@ -124,23 +123,27 @@ function FlowCanvasInner() {
         minZoom={0.1}
         maxZoom={2}
         panOnDrag={activeTool !== "comment"}
-        className="bg-background"
+        className="bg-background select-none"
+        onNodeDragStart={() => setIsDragging(true)}
+        onNodeDragStop={() => setIsDragging(false)}
         defaultEdgeOptions={{
           type: "relationship",
         }}
         // Connection line style
         connectionLineStyle={{ 
           stroke: "var(--foreground)", 
-          strokeWidth: 1.5,
+          strokeWidth: 2,
           strokeDasharray: "4 4"
         }}
       >
         <Background variant={"dots" as never} gap={24} size={1.5} color="var(--canvas-dot)" />
-        <MiniMap
-          nodeColor="var(--node-border)"
-          maskColor="rgba(0,0,0,0.4)"
-          className="!bg-card !border !border-border !rounded-lg"
-        />
+        {isDragging && (
+          <MiniMap
+            nodeColor="var(--node-border)"
+            maskColor="rgba(0,0,0,0.4)"
+            className="!bg-card !border !border-border !rounded-lg animate-in fade-in"
+          />
+        )}
       </ReactFlow>
 
       {/* Constraints Legend */}
@@ -184,11 +187,13 @@ function FlowCanvasInner() {
         </div>
       )}
 
-      <FloatingDock
-        onZoomIn={() => zoomIn()}
-        onZoomOut={() => zoomOut()}
-        onFitView={() => fitView()}
-      />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+        <FloatingDock
+          onZoomIn={() => zoomIn()}
+          onZoomOut={() => zoomOut()}
+          onFitView={() => fitView()}
+        />
+      </div>
     </div>
   )
 }

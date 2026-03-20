@@ -76,7 +76,7 @@ export function Testimonials() {
 
   useEffect(() => {
     if (!isAutoPlaying) return
-    const interval = setInterval(next, 3000)
+    const interval = setInterval(next, 2000)
     return () => clearInterval(interval)
   }, [isAutoPlaying])
 

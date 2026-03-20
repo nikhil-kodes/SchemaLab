@@ -60,7 +60,7 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
 
   return (
     <>
-      <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-white/10 h-11">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-background border-b border-border h-11">
         {/* Left */}
         <div className="flex items-center gap-3">
           <Link href="/dashboard" className="flex items-center gap-2 mr-2 transition-transform active:scale-95">
@@ -69,17 +69,17 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
           </Link>
           <button
             onClick={() => router.push("/dashboard")}
-            className="text-zinc-400 hover:text-white text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="text-muted-foreground hover:text-foreground text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Projects</span>
           </button>
 
-          <div className="w-px h-4 bg-white/10" />
+          <div className="w-px h-4 bg-border" />
 
           {editing ? (
             <input
-              className="bg-transparent text-white text-sm font-medium border-0 outline-0 focus:bg-white/5 rounded px-2 py-1"
+              className="bg-transparent text-foreground text-sm font-medium border-0 outline-0 focus:bg-muted rounded px-2 py-1"
               value={name}
               onChange={(e) => setName(e.target.value)}
               onBlur={handleNameBlur}
@@ -88,11 +88,11 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
             />
           ) : (
             <button
-              className="flex items-center gap-1.5 text-sm text-white hover:text-zinc-300 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-sm text-foreground hover:text-muted-foreground transition-colors cursor-pointer"
               onClick={() => setEditing(true)}
             >
               {projectName}
-              <Pencil className="h-3 w-3 text-zinc-500" />
+              <Pencil className="h-3 w-3 text-muted-foreground" />
             </button>
           )}
         </div>
@@ -121,14 +121,14 @@ export function TopBar({ projectId, projectName, roomId, onNameChange }: TopBarP
           )}
 
           {/* Save status */}
-          <div className="flex items-center gap-1.5 text-xs text-zinc-400 mr-2">
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground mr-2">
             <span className={`h-2 w-2 rounded-full ${saveStatusDot === "bg-green-400" ? "bg-green-500" : saveStatusDot}`} />
             <span className="hidden sm:inline">{saveStatusText}</span>
           </div>
 
           <button
             onClick={() => setShareOpen(true)}
-            className="border border-white/20 text-white text-sm rounded-lg px-3 py-1.5 hover:bg-white/5 flex items-center gap-2"
+            className="border border-border text-foreground text-sm rounded-lg px-3 py-1.5 hover:bg-muted flex items-center gap-2"
           >
             <Share2 className="h-3.5 w-3.5" />
             Share

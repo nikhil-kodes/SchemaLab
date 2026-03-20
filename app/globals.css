@@ -6,7 +6,7 @@
 
 :root {
   --bg-base: #ffffff;
-  --bg-surface: #f4f4f5;
+  --bg-surface: #ffffff;
   --bg-elevated: #ffffff;
   --bg-input: #ffffff;
   --bg-border: #e4e4e7;
@@ -26,9 +26,9 @@
   --warning: #d97706;
   --error: #dc2626;
 
-  --canvas-bg: #f4f4f5;
+  --canvas-bg: #f9fafb;
   --canvas-dot: #e2e2e7;
-  --canvas-grid: #f1f1f4;
+  --canvas-grid: #e2e2e7;
 
   --node-bg: #ffffff;
   --node-border: #e4e4e7;
@@ -113,13 +113,17 @@ body {
 
 .grid-bg {
   background-color: var(--bg-base);
-  background-image: radial-gradient(var(--canvas-dot) 1px, transparent 1px);
+  background-image: 
+    linear-gradient(var(--canvas-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--canvas-grid) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .page-bg {
   background-color: var(--bg-base);
-  background-image: radial-gradient(var(--canvas-dot) 1px, transparent 1px);
+  background-image: 
+    linear-gradient(var(--canvas-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--canvas-grid) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 

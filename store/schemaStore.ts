@@ -14,6 +14,7 @@ type SchemaStore = {
   isGenerating: boolean
   isRightPanelOpen: boolean
   activeTool: "select" | "hand" | "comment"
+  isDragging: boolean
 
   // Save state
   isSaving: boolean
@@ -48,6 +49,7 @@ type SchemaStore = {
   // UI
   setActiveTool: (tool: "select" | "hand" | "comment") => void
   setIsRightPanelOpen: (open: boolean) => void
+  setIsDragging: (val: boolean) => void
 
   // Save
   setIsSaving: (val: boolean) => void
@@ -71,6 +73,7 @@ export const useSchemaStore = create<SchemaStore>()(
       isGenerating: false,
       isRightPanelOpen: true,
       activeTool: "select",
+      isDragging: false,
       isSaving: false,
       hasUnsavedChanges: false,
       lastSaved: null,
@@ -252,6 +255,7 @@ export const useSchemaStore = create<SchemaStore>()(
       setIsGenerating: (val) => set({ isGenerating: val }),
       setActiveTool: (tool) => set({ activeTool: tool }),
       setIsRightPanelOpen: (open) => set({ isRightPanelOpen: open }),
+      setIsDragging: (val) => set({ isDragging: val }),
       setIsSaving: (val) => set({ isSaving: val }),
       setHasUnsavedChanges: (val) => set({ hasUnsavedChanges: val }),
       setLastSaved: (date) => set({ lastSaved: date }),

@@ -34,8 +34,9 @@ function RelationshipEdgeComponent({
         path={edgePath}
         markerEnd={markerEnd}
         style={{
-          stroke: "#3a3a3a",
+          stroke: "var(--text-secondary)",
           strokeWidth: 2,
+          opacity: 0.6,
           ...style,
         }}
       />
@@ -47,7 +48,7 @@ function RelationshipEdgeComponent({
               transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
               pointerEvents: "all",
             }}
-            className="rounded-lg border border-white/10 bg-zinc-900 px-2 py-0.5 text-[10px] font-mono text-zinc-400 shadow-lg"
+            className="rounded-lg border border-border bg-card px-2 py-0.5 text-[10px] font-mono text-muted-foreground shadow-lg"
           >
             {label}
           </div>

@@ -146,72 +146,63 @@ export function HeroSection() {
                     </div>
 
                     {/* Table 1: Users */}
-                    <div className="absolute left-[8%] top-[15%] w-60 rounded-xl border border-border bg-card shadow-2xl z-20 overflow-hidden">
+                    <div className="absolute left-[5%] md:left-[8%] top-[10%] md:top-[15%] w-44 md:w-60 rounded-xl border border-border bg-card shadow-2xl z-20 overflow-hidden scale-90 md:scale-100">
                         <div className="bg-muted/50 px-3 py-2 border-b border-border flex items-center justify-between">
-                            <span className="text-[11px] font-bold font-mono">users</span>
+                            <span className="text-[10px] md:text-[11px] font-bold font-mono">users</span>
                             <div className="flex items-center gap-1">
-                                <MessageSquare className="h-2.5 w-2.5 text-blue-500" />
-                                <div className="h-3 w-3 bg-muted rounded border border-border flex items-center justify-center"><Plus className="h-2 w-2" /></div>
+                                <MessageSquare className="h-2 w-2 md:h-2.5 md:w-2.5 text-blue-500" />
+                                <div className="h-2.5 w-2.5 md:h-3 md:w-3 bg-muted rounded border border-border flex items-center justify-center"><Plus className="h-1.5 w-1.5 md:h-2 md:w-2" /></div>
                             </div>
                         </div>
                         <div className="divide-y divide-border/50">
-                            <div className="flex items-center gap-2 px-3 py-1.5">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--pk-color)]" />
-                                <span className="font-mono text-[10px]">id</span>
-                                <span className="ml-auto text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">UUID</span>
+                            <div className="flex items-center gap-2 px-3 py-1 md:py-1.5">
+                                <span className="h-1 w-1 md:h-1.5 md:w-1.5 rounded-full bg-[var(--pk-color)]" />
+                                <span className="font-mono text-[9px] md:text-[10px]">id</span>
+                                <span className="ml-auto text-[8px] md:text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">UUID</span>
                             </div>
-                            <div className="flex items-center gap-2 px-3 py-1.5 relative">
-                                <span className="h-1.5 w-1.5 rounded-full bg-transparent" />
-                                <span className="font-mono text-[10px]">email</span>
-                                <span className="ml-auto text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">VarChar</span>
+                            <div className="flex items-center gap-2 px-3 py-1 md:py-1.5 relative">
+                                <span className="h-1 w-1 md:h-1.5 md:w-1.5 rounded-full bg-transparent" />
+                                <span className="font-mono text-[9px] md:text-[10px]">email</span>
+                                <span className="ml-auto text-[8px] md:text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">VarChar</span>
                                 <div className="absolute -right-0.5 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-foreground border border-background shadow-sm" />
                             </div>
-                            <div className="flex items-center gap-2 px-3 py-1.5">
-                                <span className="h-1.5 w-1.5 rounded-full bg-transparent" />
-                                <span className="font-mono text-[10px]">name</span>
-                                <span className="ml-auto text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">String</span>
+                            <div className="flex items-center gap-2 px-3 py-1 md:py-1.5">
+                                <span className="h-1 w-1 md:h-1.5 md:w-1.5 rounded-full bg-transparent" />
+                                <span className="font-mono text-[9px] md:text-[10px]">name</span>
+                                <span className="ml-auto text-[8px] md:text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">String</span>
                             </div>
-                        </div>
-                        <div className="bg-muted/20 px-3 py-1 flex items-center gap-1.5 border-t border-border/50">
-                             <div className="bg-[var(--pk-color)] text-[7px] text-white px-1 rounded font-mono">PK</div>
-                             <div className="bg-[var(--uq-color)] text-[7px] text-white px-1 rounded font-mono">UQ</div>
-                             <div className="bg-blue-500 text-[7px] text-white px-1 rounded font-mono">NN</div>
                         </div>
                     </div>
 
-                    {/* Table 2: Profiles */}
-                    <div className="absolute right-[25%] top-[30%] w-60 rounded-xl border border-border bg-card shadow-2xl z-10 overflow-hidden">
+                    {/* Table 2: Profiles - Hidden on very small screens to avoid clutter */}
+                    <div className="absolute right-[5%] md:right-[25%] top-[25%] md:top-[30%] w-44 md:w-60 rounded-xl border border-border bg-card shadow-2xl z-10 overflow-hidden scale-90 md:scale-100 hidden sm:block">
                         <div className="bg-muted/50 px-3 py-2 border-b border-border flex items-center justify-between">
-                            <span className="text-[11px] font-bold font-mono">profiles</span>
+                            <span className="text-[10px] md:text-[11px] font-bold font-mono">profiles</span>
                             <div className="flex items-center gap-1">
-                                <div className="h-3 w-3 bg-muted rounded border border-border flex items-center justify-center"><Plus className="h-2 w-2" /></div>
+                                <div className="h-2.5 w-2.5 md:h-3 md:w-3 bg-muted rounded border border-border flex items-center justify-center"><Plus className="h-1.5 w-1.5 md:h-2 md:w-2" /></div>
                             </div>
                         </div>
                         <div className="divide-y divide-border/50">
-                            <div className="flex items-center gap-2 px-3 py-1.5">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--pk-color)]" />
-                                <span className="font-mono text-[10px]">id</span>
-                                <span className="ml-auto text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">UUID</span>
+                            <div className="flex items-center gap-2 px-3 py-1 md:py-1.5">
+                                <span className="h-1 w-1 md:h-1.5 md:w-1.5 rounded-full bg-[var(--pk-color)]" />
+                                <span className="font-mono text-[9px] md:text-[10px]">id</span>
+                                <span className="ml-auto text-[8px] md:text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">UUID</span>
                             </div>
-                            <div className="flex flex-col px-3 py-1.5 relative">
+                            <div className="flex flex-col px-3 py-1 md:py-1.5 relative">
                                 <div className="flex items-center gap-2">
-                                    <span className="h-2 w-2 -ml-0.5 rounded-full bg-[var(--fk-color)]" />
-                                    <span className="font-mono text-[10px]">user_email</span>
-                                    <span className="ml-auto text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">VarChar</span>
-                                </div>
-                                <div className="flex items-center gap-1 mt-1 opacity-60">
-                                   <span className="text-[7px] text-muted-foreground font-mono">Len:</span>
-                                   <div className="text-[7px] bg-muted px-1 border border-border rounded font-mono">255</div>
+                                    <span className="h-1.5 w-1.5 -ml-0.5 rounded-full bg-[var(--fk-color)]" />
+                                    <span className="font-mono text-[9px] md:text-[10px]">user_email</span>
+                                    <span className="ml-auto text-[8px] md:text-[9px] text-muted-foreground bg-muted/30 px-1 rounded font-mono">VarChar</span>
                                 </div>
                                 <div className="absolute -left-0.5 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-foreground border border-background shadow-sm" />
                             </div>
                         </div>
                     </div>
 
-                    {/* Svg Connection */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                    {/* Svg Connection - Responsive path */}
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 hidden sm:block">
                         <path 
-                            d="M 292 215 C 380 215, 300 295, 450 295" 
+                            d="M 210 185 C 280 185, 250 250, 400 250" 
                             stroke="var(--foreground)" 
                             strokeWidth="1.5" 
                             fill="none" 
@@ -221,8 +212,8 @@ export function HeroSection() {
                     </svg>
                 </div>
 
-                {/* Right Side Code Panel Mockup */}
-                <div className="w-56 border-l border-border bg-muted/20 backdrop-blur-xl hidden md:flex flex-col z-30 shadow-[-10px_0_30px_rgba(0,0,0,0.05)]">
+                {/* Right Side Code Panel Mockup - Hidden on small screens */}
+                <div className="w-56 border-l border-border bg-muted/20 backdrop-blur-xl hidden lg:flex flex-col z-30 shadow-[-10px_0_30px_rgba(0,0,0,0.05)]">
                    <div className="px-3 py-2 border-b border-border bg-background flex items-center gap-2">
                        <span className="text-[10px] font-bold text-foreground">PRISMA</span>
                        <span className="text-[9px] text-muted-foreground">Preview</span>

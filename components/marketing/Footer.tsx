@@ -2,12 +2,11 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Database, Github, Twitter } from "lucide-react"
 
 const quickLinks = [
   { href: "#features", label: "Features" },
   { href: "#how-it-works", label: "How It Works" },
-  { href: "https://github.com", label: "GitHub" },
+  { href: "https://github.com/nikhil-kodes/SchemaLab", label: "GitHub" },
   { href: "/auth", label: "Sign In" },
 ]
 

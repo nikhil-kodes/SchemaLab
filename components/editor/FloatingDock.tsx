@@ -73,7 +73,7 @@ export function FloatingDock({ onZoomIn, onZoomOut, onFitView }: FloatingDockPro
 
   return (
     <TooltipProvider delayDuration={0}>
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+      <div className="z-50 shrink-0 mb-0">
         <div className="flex items-center gap-1 rounded-2xl border border-border bg-card/90 px-4 py-2.5 shadow-2xl backdrop-blur-xl">
           {groups.map((group, gi) => (
             <div key={gi} className="flex items-center gap-1">

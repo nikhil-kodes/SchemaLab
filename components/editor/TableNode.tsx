@@ -75,8 +75,8 @@ function TableNodeComponent({ id, data, selected }: NodeProps & { data: TableNod
   return (
     <TooltipProvider delayDuration={200}>
       <div
-        className={`rounded-xl border bg-card shadow-xl w-80 transition-all ${
-          selected ? "border-foreground ring-1 ring-foreground/20" : "border-border"
+        className={`rounded-xl border bg-card shadow-2xl w-80 transition-all ${
+          selected ? "border-blue-500 ring-2 ring-blue-500/20" : "border-border shadow-md"
         }`}
       >
         {/* Connection handles */}
@@ -84,23 +84,23 @@ function TableNodeComponent({ id, data, selected }: NodeProps & { data: TableNod
           type="target"
           position={Position.Left}
           id="id"
-          className="!w-3 !h-3 !rounded-full !bg-muted !border-2 !border-border-strong !-left-1.5 opacity-0"
+          className="!w-3 !h-3 !rounded-full !bg-blue-500 !border-2 !border-background !-left-1.5 shadow-sm hover:scale-125 transition-transform"
         />
         <Handle
           type="source"
           position={Position.Right}
           id="id"
-          className="!w-3 !h-3 !rounded-full !bg-muted !border-2 !border-border-strong !-right-1.5 opacity-0"
+          className="!w-3 !h-3 !rounded-full !bg-blue-500 !border-2 !border-background !-right-1.5 shadow-sm hover:scale-125 transition-transform"
         />
 
         {/* Header */}
-        <div className="flex flex-col rounded-t-xl bg-muted/50 border-b border-border transition-colors">
+        <div className="flex flex-col rounded-t-xl bg-secondary/30 border-b border-border transition-colors">
           <div className="flex items-center justify-between px-4 py-3 relative">
-            <div className="flex items-center gap-2">
-              <GripVertical className="h-3.5 w-3.5 text-muted-foreground cursor-grab" />
+            <div className="flex items-center gap-2 group/header">
+              <GripVertical className="h-3.5 w-3.5 text-muted-foreground/50 cursor-grab group-hover/header:text-foreground transition-colors" />
               {editingName ? (
                 <Input
-                  className="h-7 bg-transparent text-sm font-semibold text-foreground font-mono outline-none border-border w-32 px-1 focus-visible:ring-0"
+                  className="h-7 bg-background text-sm font-semibold text-foreground font-mono outline-none border-border w-32 px-1 focus-visible:ring-1 focus-visible:ring-blue-500"
                   value={nameValue}
                   onChange={(e) => setNameValue(e.target.value)}
                   onBlur={handleNameBlur}
@@ -109,7 +109,7 @@ function TableNodeComponent({ id, data, selected }: NodeProps & { data: TableNod
                 />
               ) : (
                 <span
-                  className="text-sm font-semibold text-foreground font-mono cursor-text"
+                  className="text-sm font-bold text-foreground font-mono cursor-text hover:text-blue-500 transition-colors"
                   onClick={() => {
                     setNameValue(data.tableName)
                     setEditingName(true)
@@ -195,13 +195,13 @@ function TableNodeComponent({ id, data, selected }: NodeProps & { data: TableNod
                     type="target"
                     position={Position.Left}
                     id={field.id}
-                    className="!w-2 !h-2 !rounded-full !bg-muted !border !border-border-strong !-left-1"
+                    className="!w-2.5 !h-2.5 !rounded-full !bg-blue-500 !border !border-background !-left-1 shadow-sm"
                   />
                   <Handle
                     type="source"
                     position={Position.Right}
                     id={field.id}
-                    className="!w-2 !h-2 !rounded-full !bg-muted !border !border-border-strong !-right-1"
+                    className="!w-2.5 !h-2.5 !rounded-full !bg-blue-500 !border !border-background !-right-1 shadow-sm"
                   />
 
                   <span

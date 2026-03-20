@@ -10,7 +10,7 @@ import { ThemeToggle } from "@/components/ThemeToggle"
 const navItems = [
   { icon: FolderOpen, label: "Projects", href: "/dashboard" },
   { icon: Settings, label: "Settings", href: "/settings" },
-  { icon: HelpCircle, label: "Help", href: "#" },
+  { icon: HelpCircle, label: "Help", href: "https://github.com/nikhil-kodes/SchemaLab" },
 ]
 
 export function Sidebar() {

@@ -117,29 +117,23 @@ export default function EditorPage() {
   }
 
   return (
-    <div className="flex h-screen flex-col bg-zinc-950">
+    <div className="flex h-screen flex-col bg-background">
       <TopBar
         projectId={projectId}
         projectName={project.name}
         roomId={project.room_id}
         onNameChange={handleNameChange}
       />
-      <div className="flex flex-1 overflow-hidden">
-        {/* Mobile message */}
-        <div className="flex md:hidden items-center justify-center flex-1 p-8 text-center">
-          <div>
-            <p className="text-lg text-white font-medium">Desktop Only</p>
-            <p className="mt-2 text-sm text-zinc-400">
-              Please open SchemaLab on a desktop browser for the full editor experience.
-            </p>
-          </div>
+      <div className="flex flex-1 overflow-hidden relative">
+        <div className="flex-1 flex overflow-hidden">
+          <FlowCanvas />
         </div>
 
-        {/* Desktop canvas + panel */}
-        <div className="hidden md:flex flex-1">
-          <FlowCanvas />
-          {isRightPanelOpen && <CodePanel projectName={project.name} />}
-        </div>
+        {isRightPanelOpen && (
+          <div className="absolute inset-0 z-50 bg-background md:relative md:inset-auto md:z-auto md:w-[400px] border-l border-border transition-all animate-in slide-in-from-right md:animate-none">
+            <CodePanel projectName={project.name} />
+          </div>
+        )}
       </div>
     </div>
   )

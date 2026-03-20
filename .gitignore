@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#some of the files that i dont want to push to github
+prd.md
+techstack.md
+design.md
+AGENTS.md
+CLAUDE.md
