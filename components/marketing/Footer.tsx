@@ -28,8 +28,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* About */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 text-white font-semibold text-base mb-3">
-              <Database className="h-5 w-5" />
+            <Link href="/" className="flex items-center gap-2 text-white font-semibold text-base mb-3 select-none">
+              <img src="/logo-white.png" alt="Logo" className="h-5 w-5 object-contain" />
               <span>SchemaLab</span>
             </Link>
             <p className="text-sm text-zinc-500 leading-relaxed mb-4 max-w-sm">
@@ -90,16 +90,16 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-zinc-600">
-            © 2025 SchemaLab. All rights reserved.
+            © 2026 SchemaLab. All rights reserved.
           </p>
           <p className="text-sm text-zinc-500 text-center">
             Built with <span className="text-red-500">❤️</span> by Nikhil Singh
           </p>
           <div className="flex gap-4">
-            <Link href="#" className="text-sm text-zinc-600 hover:text-white transition-colors">
+            <Link href="/privacy" className="text-sm text-zinc-600 hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-sm text-zinc-600 hover:text-white transition-colors">
+            <Link href="/terms" className="text-sm text-zinc-600 hover:text-white transition-colors">
               Terms
             </Link>
           </div>

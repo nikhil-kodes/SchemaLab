@@ -26,7 +26,7 @@ interface FloatingDockProps {
 
 export function FloatingDock({ onZoomIn, onZoomOut, onFitView }: FloatingDockProps) {
   const { addTable, activeTool, setActiveTool } = useSchemaStore()
-  const { undo, redo } = useSchemaStore.temporal((state: any) => state)
+  const { undo, redo } = useStore(useSchemaStore.temporal, (state: any) => state)
 
   const groups = [
     [
