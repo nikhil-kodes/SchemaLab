@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /privacy
+Allow: /terms
+Disallow: /dashboard
+Disallow: /editor
+Disallow: /settings
+Disallow: /join
+Disallow: /api
+
+Sitemap: https://schemalab.nikhilsingh.co.in/sitemap.xml
